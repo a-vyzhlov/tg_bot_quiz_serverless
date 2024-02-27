@@ -27,7 +27,7 @@ async def right_answer(callback: types.CallbackQuery):
     if current_question_index < len(quiz_data):
         await get_question(callback.message, callback.from_user.id)
     else:
-        await callback.message.answer(f"Это был последний вопрос. Квиз завершен!\nВаш результат: {current_score} правильных ответов")
+        await callback.message.answer(f"Это был последний вопрос. Квиз завершен!\nТвой результат: {current_score} правильных ответов")
 
   
 @router.callback_query(F.data == "wrong_answer")
@@ -52,7 +52,7 @@ async def wrong_answer(callback: types.CallbackQuery):
     if current_question_index < len(quiz_data):
         await get_question(callback.message, callback.from_user.id)
     else:
-        await callback.message.answer(f"Это был последний вопрос. Квиз завершен!\nВаш результат: {current_score} правильных ответов")
+        await callback.message.answer(f"Это был последний вопрос. Квиз завершен!\nТвой результат: {current_score} правильных ответов")
 
 
 # Хэндлер на команду /start
@@ -61,7 +61,7 @@ async def cmd_start(message: types.Message):
     builder = ReplyKeyboardBuilder()
     builder.add(types.KeyboardButton(text="Начать игру"))
     photo_url = "https://storage.yandexcloud.net/termquiz/%D0%A6%D0%B8%D1%82%D0%B0%D1%82%D1%8B.png"
-    await message.answer_photo(photo_url, caption="Добро пожаловать в квиз!\nПопробуйте отгадать цитаты из советских фильмов, зная их названия.", reply_markup=builder.as_markup(resize_keyboard=True))
+    await message.answer_photo(photo_url, caption="Добро пожаловать в квиз!\nПопробуй отгадать цитаты из советских фильмов, зная их названия.", reply_markup=builder.as_markup(resize_keyboard=True))
 
 
 # Хэндлер на команду /quiz
